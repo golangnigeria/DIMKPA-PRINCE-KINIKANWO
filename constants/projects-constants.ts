@@ -4,15 +4,58 @@ import { type Project } from "@/types/portfolio-types";
 export const MY_PROJECTS: Project[] = [
   {
     id: 1,
-    title: "Inverex Global",
-    category: "Solar Energy · Pakistan",
+    title: "Curexal Space",
+    category: "Healthcare Technology · Product Development",
     description:
-      "Marketing & product site for Inverex, a renewable and scalable solar energy provider for homes and businesses worldwide.",
+      "A patient-centred healthcare platform connecting patients, clinicians, partner clinics, and diagnostic centres through a coordinated service.",
     subDescription: [
-      "Designed and shipped a fast, SEO-friendly marketing site with crisp motion polish.",
-      "Built reusable section components for products, services and customer stories.",
-      "Tuned image delivery, fonts and route transitions for premium feel on every device.",
-      "Implemented responsive layouts and accessibility from the ground up.",
+      "Contributing to product direction, system architecture, backend engineering, and healthcare workflow design.",
+      "Developing connected care workflows spanning patient intake, consultations, referrals, diagnostics, and care coordination.",
+      "Implementing resilient Go and PostgreSQL backend services built for diagnostic data integrity.",
+      "Balancing patient and clinician user needs with healthcare operational realities.",
+    ],
+    href: "https://curexal.space",
+    logo: "",
+    image: "",
+    accent: "from-mint/40 to-royal/10",
+    tags: [
+      { id: 1, name: "Go", path: "/assets/logos/javascript.svg" },
+      { id: 2, name: "PostgreSQL", path: "/assets/logos/javascript.svg" },
+      { id: 3, name: "Next.js", path: "/assets/logos/react.svg" },
+      { id: 4, name: "Digital Health", path: "/assets/logos/javascript.svg" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Seat of Wisdom International",
+    category: "Education Technology · School Management System",
+    description:
+      "Comprehensive school management system designed and developed to digitise and streamline school administrative and academic operations.",
+    subDescription: [
+      "Designed and developed a centralised system to digitise student records, academic tracking, and administration.",
+      "Translated school operational challenges into intuitive software functionality and structured workflows.",
+      "Simplified day-to-day administrative burdens for teachers, administrators, and parents.",
+    ],
+    href: "#",
+    logo: "",
+    image: "",
+    accent: "from-aqua/40 to-royal/10",
+    tags: [
+      { id: 1, name: "TypeScript", path: "/assets/logos/javascript.svg" },
+      { id: 2, name: "React", path: "/assets/logos/react.svg" },
+      { id: 3, name: "SQL", path: "/assets/logos/javascript.svg" },
+      { id: 4, name: "EdTech", path: "/assets/logos/javascript.svg" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Inverex Global",
+    category: "Renewable Energy · Collaborative Team Project",
+    description:
+      "Marketing and product web platform for a leading solar energy provider delivering clean power solutions globally.",
+    subDescription: [
+      "Contributed as part of the engineering team to build a responsive, SEO-optimised web experience.",
+      "Developed modular UI components for product showcases and customer inquiries.",
     ],
     href: "https://www.inverexglobal.com/",
     logo: "",
@@ -22,20 +65,17 @@ export const MY_PROJECTS: Project[] = [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
       { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
-      { id: 4, name: "Motion", path: "/assets/logos/javascript.svg" },
     ],
   },
   {
-    id: 2,
+    id: 4,
     title: "Getweys",
-    category: "Digital Product Agency",
+    category: "Digital Agency · Collaborative Team Project",
     description:
-      "AI-first product agency shipping web platforms, mobile apps and growth systems. 1,000+ projects since 2020 across Austin, Karachi and Auckland.",
+      "Digital product platform showcasing agency offerings across web engineering, mobile development, and growth infrastructure.",
     subDescription: [
-      "Built the agency site around a service catalogue spanning web, mobile, design and marketing.",
-      "Structured case-study and sector sections covering fintech, healthcare, energy and government work.",
-      "Implemented a clear discovery-to-launch process narrative with scroll-driven motion.",
-      "Tuned performance, SEO and accessibility for B2B discovery at scale.",
+      "Assisted in structuring case-study portfolios spanning enterprise, healthcare, and fintech sectors.",
+      "Optimised frontend performance and accessibility for international visitors.",
     ],
     href: "https://getweys.com/",
     logo: "",
@@ -45,20 +85,17 @@ export const MY_PROJECTS: Project[] = [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
       { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
-      { id: 4, name: "SEO", path: "/assets/logos/javascript.svg" },
     ],
   },
   {
-    id: 3,
+    id: 5,
     title: "PromptStore",
-    category: "AI Marketplace",
+    category: "AI Marketplace · Collaborative Team Project",
     description:
-      "Marketplace for buying and selling AI prompts tuned for ChatGPT, Claude, Midjourney, Flux and Cursor.",
+      "Marketplace platform for discovering, listing, and purchasing tuned AI prompts for leading LLMs and generative systems.",
     subDescription: [
-      "Built a curated, category-driven prompt library with trending and community feeds.",
-      "Implemented one-click checkout across Stripe, PayPal and crypto with instant delivery.",
-      "Shipped a creator dashboard for listing, pricing and tracking prompt sales.",
-      "Designed dense browse and preview surfaces that stay fast at catalogue scale.",
+      "Supported category-based search indexing and checkout integrations.",
+      "Delivered responsive catalog views optimized for fast browsing.",
     ],
     href: "https://promptstore.io/",
     logo: "",
@@ -67,21 +104,18 @@ export const MY_PROJECTS: Project[] = [
     tags: [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
-      { id: 3, name: "Stripe", path: "/assets/logos/javascript.svg" },
-      { id: 4, name: "Rest APIs", path: "/assets/logos/javascript.svg" },
+      { id: 3, name: "REST APIs", path: "/assets/logos/javascript.svg" },
     ],
   },
   {
-    id: 4,
+    id: 6,
     title: "ClipSave",
-    category: "Media Tools",
+    category: "Media Tools · Collaborative Team Project",
     description:
-      "Browser-based video downloader supporting nine platforms in SD, HD and FHD. No account, no caps, nothing stored.",
+      "High-speed browser-based media utility supporting direct multi-source downloads with strict zero user-retention.",
     subDescription: [
-      "Built a single-input flow that resolves and returns downloads in seconds.",
-      "Supported nine sources including YouTube, Instagram, TikTok and Vimeo across quality tiers.",
-      "Shipped companion utilities: URL shortener, subtitle downloader and thumbnail extractor.",
-      "Designed for zero-retention: no download history and no activity tracking.",
+      "Contributed to fast input resolution and parsing flows.",
+      "Engineered lightweight client interactions for cross-device utility.",
     ],
     href: "https://clipsaves.com/",
     logo: "",
@@ -91,52 +125,6 @@ export const MY_PROJECTS: Project[] = [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "Node.js", path: "/assets/logos/javascript.svg" },
       { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
-      { id: 4, name: "Rest APIs", path: "/assets/logos/javascript.svg" },
-    ],
-  },
-  {
-    id: 5,
-    title: "Fast Digital Technology",
-    category: "Cyber Security Services",
-    description:
-      "Marketing & service site for a cyber security firm with motion-rich storytelling.",
-    subDescription: [
-      "Crafted high-impact landing experience with scroll-driven storytelling.",
-      "Built a service catalogue and lead-capture flow.",
-      "Optimised SEO and performance for B2B discovery.",
-    ],
-    href: "https://fastdigitaltechnology.com/",
-    logo: "",
-    image: "",
-    accent: "from-aqua/40 to-royal/10",
-    tags: [
-      { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
-      { id: 2, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
-      { id: 3, name: "Motion", path: "/assets/logos/javascript.svg" },
-      { id: 4, name: "SEO", path: "/assets/logos/javascript.svg" },
-    ],
-  },
-  {
-    id: 6,
-    title: "ATF Catalogue",
-    category: "Interactive Flipbook · UAE",
-    description:
-      "Print product catalogue rebuilt as a page-turning digital flipbook for All Things Food, a premium F&B distributor in the UAE.",
-    subDescription: [
-      "Built a spread-based flipbook reader with page-turn transitions.",
-      "Implemented progressive page preloading behind a branded loading sequence.",
-      "Tuned spread rendering so paging stays smooth on mobile as well as desktop.",
-      "Carried the client's brand type and colour system across every spread.",
-    ],
-    href: "https://online-flipbook.vercel.app/",
-    logo: "",
-    image: "",
-    accent: "from-lavender/40 to-sand/10",
-    tags: [
-      { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
-      { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
-      { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
-      { id: 4, name: "Motion", path: "/assets/logos/javascript.svg" },
     ],
   },
 ];
@@ -151,3 +139,8 @@ export const TILT_RANGE: { x: [number, number]; y: [number, number] } = {
 export const TRACK_SPRING: Transition = { stiffness: 60, damping: 20 };
 
 export const PREVIEW_WINDOW = 1;
+
+export const PREVIEW_TRANSITION: Transition = {
+  duration: 0.35,
+  ease: [0.16, 1, 0.3, 1],
+};

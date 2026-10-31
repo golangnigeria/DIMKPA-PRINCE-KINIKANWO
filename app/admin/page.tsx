@@ -49,7 +49,7 @@ const AdminPage = async ({ searchParams }: AdminPageProps) => {
   if (state.status === "schema-missing") {
     return (
       <AdminPanel>
-        <SetupNotice variant="no-schema" />
+        <SetupNotice />
       </AdminPanel>
     );
   }

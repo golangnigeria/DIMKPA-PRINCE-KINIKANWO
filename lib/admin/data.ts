@@ -1,5 +1,5 @@
-import { type SupabaseClient } from "@supabase/supabase-js";
-import { createClient } from "@/lib/supabase/server";
+import { cookies } from "next/headers";
+import { API_BASE_URL } from "@/lib/api/config";
 
 export interface ContactSubmission {
   id: string;
@@ -16,20 +16,6 @@ export interface ContactSubmission {
 
 export const PAGE_SIZE = 25;
 
-const UUID_PATTERN =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-const requireClient = async (): Promise<SupabaseClient> => {
-  const supabase = await createClient();
-  if (!supabase) {
-    throw new Error("Supabase is not configured on this deployment.");
-  }
-  return supabase;
-};
-
-const sanitiseSearch = (raw: string): string =>
-  raw.replace(/[^a-zA-Z0-9@._\- ]/g, "").trim().slice(0, 80);
-
 export interface SubmissionPage {
   rows: ContactSubmission[];
   total: number;
@@ -37,60 +23,46 @@ export interface SubmissionPage {
   pageCount: number;
 }
 
+const getAuthHeaders = async (): Promise<HeadersInit> => {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get("admin_session")?.value;
+  if (!sessionCookie) {
+    throw new Error("Not signed in as an admin.");
+  }
+  return {
+    Authorization: `Bearer ${sessionCookie}`,
+    Cookie: `admin_session=${sessionCookie}`,
+  };
+};
+
 export const listSubmissions = async (
   search: string,
   page: number
 ): Promise<SubmissionPage> => {
-  const supabase = await requireClient();
-  const term = sanitiseSearch(search);
+  const headers = await getAuthHeaders();
+  const query = new URLSearchParams();
+  if (search) query.set("q", search);
+  if (page > 1) query.set("page", String(page));
+  query.set("limit", String(PAGE_SIZE));
 
-  const applyFilter = <T extends { or: (f: string) => T }>(query: T): T =>
-    term
-      ? query.or(
-          `name.ilike.*${term}*,email.ilike.*${term}*,message.ilike.*${term}*`
-        )
-      : query;
+  const url = `${API_BASE_URL}/api/admin/submissions?${query.toString()}`;
+  const res = await fetch(url, {
+    method: "GET",
+    headers,
+    cache: "no-store",
+  });
 
-  const { count, error: countError } = await applyFilter(
-    supabase
-      .from("contact_submissions")
-      .select("id", { count: "exact", head: true })
-  );
-
-  if (countError) {
-    console.error("Failed to count submissions:", countError.message);
-    throw new Error("Could not load submissions.");
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.error || "Could not load submissions.");
   }
 
-  const total = count ?? 0;
-  const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
-
-  const requested =
-    Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
-  const safePage = Math.min(requested, pageCount);
-
-  if (total === 0) {
-    return { rows: [], total: 0, page: 1, pageCount: 1 };
-  }
-
-  const from = (safePage - 1) * PAGE_SIZE;
-  const { data, error } = await applyFilter(
-    supabase
-      .from("contact_submissions")
-      .select("*")
-      .order("created_at", { ascending: false })
-  ).range(from, from + PAGE_SIZE - 1);
-
-  if (error) {
-    console.error("Failed to load submissions:", error.message);
-    throw new Error("Could not load submissions.");
-  }
-
+  const data = await res.json();
   return {
-    rows: (data ?? []) as ContactSubmission[],
-    total,
-    page: safePage,
-    pageCount,
+    rows: data.rows ?? [],
+    total: data.total ?? 0,
+    page: data.page ?? 1,
+    pageCount: data.pageCount ?? 1,
   };
 };
 
@@ -99,45 +71,34 @@ export const getSubmissionStats = async (): Promise<{
   last7Days: number;
   latest: string | null;
 }> => {
-  const supabase = await requireClient();
-  const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const headers = await getAuthHeaders();
+  const res = await fetch(`${API_BASE_URL}/api/admin/stats`, {
+    method: "GET",
+    headers,
+    cache: "no-store",
+  });
 
-  const [totalResult, weekResult, latestResult] = await Promise.all([
-    supabase
-      .from("contact_submissions")
-      .select("id", { count: "exact", head: true }),
-    supabase
-      .from("contact_submissions")
-      .select("id", { count: "exact", head: true })
-      .gte("created_at", weekAgo),
-    supabase
-      .from("contact_submissions")
-      .select("created_at")
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle(),
-  ]);
+  if (!res.ok) {
+    return { total: 0, last7Days: 0, latest: null };
+  }
 
+  const data = await res.json();
   return {
-    total: totalResult.count ?? 0,
-    last7Days: weekResult.count ?? 0,
-    latest: latestResult.data?.created_at ?? null,
+    total: data.total ?? 0,
+    last7Days: data.last7Days ?? 0,
+    latest: data.latest ?? null,
   };
 };
 
 export const deleteSubmission = async (id: string): Promise<void> => {
-  if (!UUID_PATTERN.test(id)) {
-    throw new Error("Invalid submission id.");
-  }
+  const headers = await getAuthHeaders();
+  const res = await fetch(`${API_BASE_URL}/api/admin/submissions/${id}`, {
+    method: "DELETE",
+    headers,
+  });
 
-  const supabase = await requireClient();
-  const { error } = await supabase
-    .from("contact_submissions")
-    .delete()
-    .eq("id", id);
-
-  if (error) {
-    console.error("Failed to delete submission:", error.message);
-    throw new Error("Could not delete that submission.");
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.error || "Could not delete that submission.");
   }
 };

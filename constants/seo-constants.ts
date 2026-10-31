@@ -2,7 +2,7 @@ import { HERO_LOCATION, HERO_NAME, HERO_ROLE } from "./hero-constants";
 import { CONTACT_EMAIL, MY_SOCIALS } from "./social-constants";
 
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.hasnainirfan.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://dimkpa-prince.vercel.app"
 ).replace(/\/$/, "");
 
 export const absoluteUrl = (path: string) =>
@@ -13,10 +13,10 @@ export const SITE_NAME = `${HERO_NAME} | ${HERO_ROLE}`;
 export const SITE_TITLE = `${HERO_NAME} | ${HERO_ROLE}`;
 
 export const SITE_DESCRIPTION =
-  "Senior Software Engineer with 5+ years building scalable web and mobile products in React, Next.js and Node.js. Open to freelance and contract work.";
+  "Software Engineer, IT Support Officer, and Business Strategist with a multidisciplinary background in Microbiology, healthcare technology, and business operations.";
 
 export const SITE_TAGLINE =
-  "Scalable web & mobile products built with React, Next.js and Node.js.";
+  "Translating operational challenges into useful technology solutions.";
 
 export const OG_IMAGE = "/og.jpg";
 export const OG_IMAGE_ALT = `${HERO_NAME}, ${HERO_ROLE} portfolio`;
@@ -37,25 +37,28 @@ export const GOOGLE_SITE_VERIFICATION =
 export const SITE_KEYWORDS = [
   HERO_NAME,
   "Software Engineer",
-  "Senior Software Engineer",
-  "Full Stack Developer",
+  "IT Support Officer",
+  "Business Strategist",
+  "Go Developer",
+  "Golang Nigeria",
+  "Everight Diagnostic",
+  "Curexal Space",
+  "Seat of Wisdom International",
+  "Owerri Nigeria",
+  "Rivers State University",
+  "Microbiology",
+  "Digital Health Technology",
+  "Diagnostic Laboratory IT",
+  "ISO 15189:2022",
+  "PostgreSQL",
   "Next.js Developer",
-  "React Developer",
-  "React Native Developer",
-  "Node.js Developer",
-  "Frontend Developer",
-  "Web Developer Portfolio",
-  "Freelance Developer",
-  "Hire Software Engineer",
   HERO_LOCATION,
-  "Pakistan",
-  "Remote Developer",
 ];
 
-export const HOME_TITLE = `${HERO_NAME} | ${HERO_ROLE} & Next.js Developer`;
+export const HOME_TITLE = `${HERO_NAME} | Software Engineer, IT Support & Business Strategist`;
 
 export const HOME_DESCRIPTION =
-  "Senior Software Engineer in Karachi building scalable web, mobile and API products with React, Next.js and Node.js. Open to freelance and contract work.";
+  "Portfolio of Prince Dimkpa — Software Engineer, IT Support Officer at Everight Diagnostic & Laboratory Services, and Lead Developer at Curexal Space. Expertise across Go, TypeScript, PostgreSQL, digital healthcare, education technology, and business strategy.";
 
 export const ADMIN_TITLE = "Contact submissions";
 
@@ -71,37 +74,37 @@ export const SITE_SECTIONS = [
   {
     name: "Home",
     hash: "#home",
-    description: `${HERO_NAME}, ${HERO_ROLE} building scalable web and mobile products.`,
+    description: `${HERO_NAME}, ${HERO_ROLE}.`,
   },
   {
     name: "About",
     hash: "#about",
-    description: `Background, stack and working style of ${HERO_NAME}, a ${HERO_ROLE} based in ${HERO_LOCATION}.`,
+    description: `Background, education in Microbiology, technical skills and work philosophy of ${HERO_NAME}, based in ${HERO_LOCATION}.`,
   },
   {
     name: "Services",
     hash: "#services",
     description:
-      "Web applications, cross-platform mobile apps, APIs and technical consulting for startups and product teams.",
+      "Software engineering, healthcare technology, IT support operations, and business strategy consulting.",
   },
   {
     name: "Work",
     hash: "#work",
     description:
-      "Selected projects and case studies built with React, Next.js, React Native and Node.js.",
+      "Featured projects including Curexal Space, Seat of Wisdom International, and collaborative web platforms.",
   },
   {
     name: "Testimonials",
     hash: "#testimonials",
-    description: `What clients and teammates say about working with ${HERO_NAME}.`,
+    description: `What colleagues and partners say about working with ${HERO_NAME}.`,
   },
   {
     name: "Contact",
     hash: "#contact",
-    description: `Get in touch with ${HERO_NAME} about freelance, contract or full-time work.`,
+    description: `Contact ${HERO_NAME} for software development, IT operations, or business consulting at ${CONTACT_EMAIL}.`,
   },
-] as const;
+];
 
+export const JSON_LD_SAME_AS = MY_SOCIALS.map((social) => social.href);
 export const SOCIAL_PROFILES = MY_SOCIALS.map((social) => social.href);
-
 export const CONTACT_POINT_EMAIL = CONTACT_EMAIL;

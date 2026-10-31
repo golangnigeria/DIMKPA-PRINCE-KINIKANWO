@@ -51,7 +51,7 @@ const AdminLoginPage: FC = async () => {
           {state.status === "not-configured" ? (
             <SetupNotice />
           ) : state.status === "schema-missing" ? (
-            <SetupNotice variant="no-schema" />
+            <SetupNotice />
           ) : (
             <Suspense
               fallback={
@@ -64,7 +64,7 @@ const AdminLoginPage: FC = async () => {
         </div>
 
         <p className="mt-6 text-center text-xs text-neutral-500">
-          Protected area · secured by Supabase Auth
+          Protected area · secured by Go Backend
         </p>
       </div>
     </main>

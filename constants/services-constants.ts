@@ -3,50 +3,50 @@ import { type Service } from "@/types/portfolio-types";
 export const SERVICES: Service[] = [
   {
     id: 1,
-    title: "Web Applications",
+    title: "Software Engineering",
     description:
-      "Production-grade Next.js & React apps that are fast, accessible, SEO-friendly and built to scale.",
+      "Full-stack and backend software development built with Go, JavaScript, TypeScript, PostgreSQL, and modern web frameworks.",
     icon: "/assets/logos/react.svg",
     bullets: [
-      "Landing pages & marketing sites",
-      "Dashboards & SaaS platforms",
-      "Server rendering & edge runtime",
+      "Backend engineering with Go & PostgreSQL",
+      "Interactive web apps with React & Next.js",
+      "Robust RESTful APIs & database modeling",
     ],
   },
   {
     id: 2,
-    title: "Mobile Apps",
+    title: "Healthcare Technology",
     description:
-      "Cross-platform mobile apps with React Native + Expo, polished UI and native-grade performance.",
-    icon: "/assets/logos/react.svg",
+      "Designing connected care and diagnostic workflows that streamline communication between patients, clinicians, and laboratories.",
+    icon: "/assets/logos/javascript.svg",
     bullets: [
-      "iOS & Android from one codebase",
-      "Push notifications & deep links",
-      "Offline-first patterns",
+      "Patient intake & consultation workflows",
+      "Diagnostic referral & reporting systems",
+      "Healthcare data integrity & privacy",
     ],
   },
   {
     id: 3,
-    title: "Admin Panels & CMS",
+    title: "IT Support & Systems Operations",
     description:
-      "Powerful internal tools and admin portals with reusable components and role-based access.",
+      "Reliable IT infrastructure support, hardware/software troubleshooting, and operational continuity in clinical environments.",
     icon: "/assets/logos/tailwindcss.svg",
     bullets: [
-      "Bespoke admin dashboards",
-      "Data tables, filters & exports",
-      "Auth, roles & permissions",
+      "Diagnostic laboratory IT operations",
+      "ISO 15189:2022 compliance awareness",
+      "Hardware, software & network troubleshooting",
     ],
   },
   {
     id: 4,
-    title: "APIs & Backends",
+    title: "Business Strategy & Product Planning",
     description:
-      "Robust Node.js / Express APIs with SQL or MongoDB, cron jobs, and clean integration patterns.",
+      "Bridging operational realities with technical solutions to prioritize high-value features and drive digital transformation.",
     icon: "/assets/logos/javascript.svg",
     bullets: [
-      "REST API design & docs",
-      "Database modelling (SQL & NoSQL)",
-      "Background jobs & webhooks",
+      "Operational workflow & friction analysis",
+      "Product roadmap & feature prioritization",
+      "Digital transformation for schools & clinics",
     ],
   },
 ];

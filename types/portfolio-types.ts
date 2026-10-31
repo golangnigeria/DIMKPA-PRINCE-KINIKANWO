@@ -1,4 +1,4 @@
-import { type CSSProperties, type HTMLAttributes, type RefObject } from "react";
+import { type HTMLAttributes } from "react";
 
 export interface ProjectTag {
   id: number;

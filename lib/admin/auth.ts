@@ -1,16 +1,11 @@
 import { cache } from "react";
-import { createClient } from "@/lib/supabase/server";
+import { cookies } from "next/headers";
+import { API_BASE_URL } from "@/lib/api/config";
 
 export interface AdminUser {
   id: string;
   email: string;
 }
-
-const isMissingTable = (error: { code?: string; message?: string }): boolean =>
-  error.code === "42P01" ||
-  error.code === "PGRST205" ||
-  /relation .* does not exist/i.test(error.message ?? "") ||
-  /could not find the table/i.test(error.message ?? "");
 
 export type AdminState =
   | { status: "admin"; user: AdminUser }
@@ -20,34 +15,40 @@ export type AdminState =
   | { status: "not-configured" };
 
 export const getAdminState = cache(async (): Promise<AdminState> => {
-  const supabase = await createClient();
-  if (!supabase) return { status: "not-configured" };
+  try {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get("admin_session")?.value;
 
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+    if (!sessionCookie) {
+      return { status: "signed-out" };
+    }
 
-  if (error || !user) return { status: "signed-out" };
+    const res = await fetch(`${API_BASE_URL}/api/auth/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${sessionCookie}`,
+        Cookie: `admin_session=${sessionCookie}`,
+      },
+      cache: "no-store",
+    });
 
-  const { data: adminRow, error: lookupError } = await supabase
-    .from("admin_users")
-    .select("user_id")
-    .eq("user_id", user.id)
-    .maybeSingle();
+    if (!res.ok) {
+      return { status: "signed-out" };
+    }
 
-  if (lookupError && isMissingTable(lookupError)) {
-    return { status: "schema-missing" };
+    const data = await res.json();
+    if (data.status === "admin" && data.user) {
+      return {
+        status: "admin",
+        user: { id: data.user.id, email: data.user.email },
+      };
+    }
+
+    return { status: "signed-out" };
+  } catch (error) {
+    console.error("Backend auth check error:", error);
+    return { status: "not-configured" };
   }
-
-  if (!adminRow) {
-    return { status: "not-admin", email: user.email ?? "unknown" };
-  }
-
-  return {
-    status: "admin",
-    user: { id: user.id, email: user.email ?? "unknown" },
-  };
 });
 
 export const getAdminUser = async (): Promise<AdminUser | null> => {

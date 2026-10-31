@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { API_BASE_URL } from "@/lib/api/config";
 import { CONTACT_EMAIL } from "@/constants/portfolio-constants";
 
 export const runtime = "nodejs";
@@ -44,60 +43,36 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Payload too large." }, { status: 413 });
   }
 
-  if (!isSupabaseConfigured) {
-    return NextResponse.json(
-      {
-        error: `The contact form is not connected on this deployment. Please email ${CONTACT_EMAIL} directly.`,
-      },
-      { status: 503 }
-    );
-  }
-
-  const supabase = await createClient();
-  if (!supabase) {
-    return NextResponse.json(
-      { error: `Please email ${CONTACT_EMAIL} directly.` },
-      { status: 503 }
-    );
-  }
-
   const forwarded = req.headers.get("x-forwarded-for") ?? "";
-  const ip = forwarded.split(",")[0]?.trim() || null;
-  const userAgent = req.headers.get("user-agent") ?? null;
+  const userAgent = req.headers.get("user-agent") ?? "";
 
-  const { error: dbError } = await supabase
-    .from("contact_submissions")
-    .insert({
-      name,
-      email,
-      budget: budget || null,
-      message,
-      user_agent: userAgent,
-      ip_address: ip,
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Forwarded-For": forwarded,
+        "User-Agent": userAgent,
+      },
+      body: JSON.stringify({ name, email, budget, message }),
     });
 
-  if (dbError) {
-    console.error("Supabase insert failed:", {
-      message: dbError.message,
-      code: dbError.code,
-      hint: dbError.hint,
-    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      return NextResponse.json(
+        { error: data.error || `Please email ${CONTACT_EMAIL} directly.` },
+        { status: res.status }
+      );
+    }
 
-    const tableMissing =
-      dbError.code === "42P01" ||
-      dbError.code === "PGRST205" ||
-      /relation .* does not exist/i.test(dbError.message || "") ||
-      /could not find the table/i.test(dbError.message || "");
-
+    return NextResponse.json({ ok: true }, { status: 200 });
+  } catch (error) {
+    console.error("Backend contact API call failed:", error);
     return NextResponse.json(
       {
-        error: tableMissing
-          ? "The database is connected but not set up yet. Run supabase/migrations/0001_init.sql in the Supabase SQL editor."
-          : "Could not save your message. Please try again.",
+        error: `Could not reach backend service. Please email ${CONTACT_EMAIL} directly.`,
       },
-      { status: 500 }
+      { status: 503 }
     );
   }
-
-  return NextResponse.json({ ok: true }, { status: 200 });
 }
