@@ -49,7 +49,7 @@ func LoadConfig() *Config {
 	}
 
 	return &Config{
-		Port:                  getEnv("PORT", "8080"),
+		Port:                  getEnv("GO_PORT", getEnv("BACKEND_PORT", "8080")),
 		AppEnv:                env,
 		DatabaseURL:           dbURL,
 		JWTSecret:             getEnv("JWT_SECRET", "portfolio-super-secret-jwt-key-2026"),
