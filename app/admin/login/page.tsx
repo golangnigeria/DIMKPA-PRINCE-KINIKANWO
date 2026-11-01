@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import { Suspense, type FC } from "react";
 import { HERO_NAME } from "@/constants/portfolio-constants";
 import { getAdminState } from "@/lib/admin/auth";
@@ -36,8 +37,14 @@ const AdminLoginPage: FC = async () => {
     <main className="flex min-h-screen items-center justify-center px-5 py-16">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-xl font-bold text-emerald-400">
-            {HERO_NAME.charAt(0)}
+          <span className="relative inline-flex h-14 w-14 overflow-hidden rounded-2xl border-2 border-emerald-500/40 bg-emerald-950/40 shadow-lg shadow-emerald-950/50">
+            <Image
+              src="/profile.webp"
+              alt={HERO_NAME}
+              width={56}
+              height={56}
+              className="h-full w-full object-cover"
+            />
           </span>
           <h1 className="mt-4 text-2xl font-bold tracking-tight text-white">
             Admin Portal

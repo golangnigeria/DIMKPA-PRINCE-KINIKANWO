@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, type FC } from "react";
+import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import {
   CONTACT_EMAIL,
@@ -34,8 +35,14 @@ export const Footer: FC = () => {
       >
         <div>
           <div className="flex items-center gap-2.5 text-base font-semibold tracking-tight text-white">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-sm font-bold">
-              {HERO_NAME.charAt(0)}
+            <span className="relative inline-flex h-8 w-8 overflow-hidden rounded-lg border border-emerald-500/40 bg-emerald-950/30">
+              <Image
+                src="/profile.webp"
+                alt={HERO_NAME}
+                width={32}
+                height={32}
+                className="h-full w-full object-cover"
+              />
             </span>
             <span className="font-medium">{HERO_NAME}</span>
           </div>

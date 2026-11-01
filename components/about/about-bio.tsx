@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, type FC } from "react";
+import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import { fadeInUp } from "@/animations/scroll-animations";
 import { HERO_LOCATION, HERO_NAME } from "@/constants/hero-constants";
@@ -19,12 +20,28 @@ export const AboutBio: FC = () => {
       transition={{ duration: 0.7 }}
       className="glass gradient-border p-8 md:p-10 lg:col-span-7"
     >
-      <p className="mb-3 text-xs md:text-sm uppercase tracking-[0.25em] text-emerald-400 font-semibold">
-        Professional Background
-      </p>
-      <h3 className="mb-4 text-2xl font-bold md:text-3xl">
-        {HERO_NAME} · {HERO_LOCATION}
-      </h3>
+      <div className="flex flex-col sm:flex-row sm:items-center gap-5 mb-6 pb-6 border-b border-white/10">
+        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-emerald-500/40 bg-midnight shadow-lg shadow-emerald-950/50">
+          <Image
+            src="/profile.webp"
+            alt={HERO_NAME}
+            width={80}
+            height={80}
+            priority
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div>
+          <p className="text-xs uppercase tracking-[0.25em] text-emerald-400 font-semibold">
+            Professional Background
+          </p>
+          <h3 className="text-2xl font-bold md:text-3xl text-white">
+            {HERO_NAME}
+          </h3>
+          <p className="text-xs text-neutral-400 mt-0.5">{HERO_LOCATION}</p>
+        </div>
+      </div>
+
       <p className="text-base leading-relaxed text-neutral-300 md:text-lg">
         I am a <span className="font-semibold text-white">Software Engineer, IT Support Officer, and Business Strategist</span> with
         a multidisciplinary background in <span className="text-white">Microbiology (B.Sc., Rivers State University)</span>,

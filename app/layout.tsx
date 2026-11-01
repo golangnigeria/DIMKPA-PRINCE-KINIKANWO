@@ -52,6 +52,16 @@ export const metadata: Metadata = {
   ...(GOOGLE_SITE_VERIFICATION
     ? { verification: { google: GOOGLE_SITE_VERIFICATION } }
     : {}),
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -61,8 +71,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#030412" },
-    { media: "(prefers-color-scheme: light)", color: "#5c33cc" },
+    { media: "(prefers-color-scheme: dark)", color: "#080c10" },
+    { media: "(prefers-color-scheme: light)", color: "#10b981" },
   ],
   colorScheme: "dark",
 };
