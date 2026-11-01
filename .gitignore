@@ -45,4 +45,3 @@ next-env.d.ts
 dev.db*
 backend/dev.db*
 backend/*.exe
-backend/server

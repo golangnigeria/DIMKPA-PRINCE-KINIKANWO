@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 
 	"portfolio-backend/config"
@@ -62,10 +63,18 @@ func main() {
 	// Live project preview proxy
 	mux.HandleFunc("GET /api/preview", previewHandler.Handle)
 
-	// Static frontend file server from embedded assets
-	distFS, err := fs.Sub(staticFiles, "dist")
-	if err != nil {
-		log.Fatalf("Failed to initialize static assets filesystem: %v", err)
+	// Static frontend file server (prefer disk backend/dist, fallback to embedded assets)
+	var distFS fs.FS
+	if stat, err := os.Stat("dist"); err == nil && stat.IsDir() {
+		log.Printf("Serving static assets from disk (dist/)...")
+		distFS = os.DirFS("dist")
+	} else {
+		log.Printf("Serving static assets from embedded filesystem...")
+		var subErr error
+		distFS, subErr = fs.Sub(staticFiles, "dist")
+		if subErr != nil {
+			log.Fatalf("Failed to initialize static assets filesystem: %v", subErr)
+		}
 	}
 	fileServer := http.FileServer(http.FS(distFS))
 
