@@ -46,7 +46,7 @@ export const SERVICES: Service[] = [
     bullets: [
       "Operational workflow & friction analysis",
       "Product roadmap & feature prioritization",
-      "Digital transformation for schools & clinics",
+      "Digital transformation for healthcare & enterprise workflows",
     ],
   },
 ];

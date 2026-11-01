@@ -66,9 +66,13 @@ export const ProjectPreview: FC<ProjectPreviewProps> = ({
               className="pointer-events-none select-none object-cover object-top"
             />
           ) : (
-            showPreview && (
+            showPreview && project.href && project.href !== "#" && (
               <iframe
-                src={project.href}
+                src={
+                  project.href.startsWith("http")
+                    ? `/api/preview?url=${encodeURIComponent(project.href)}`
+                    : project.href
+                }
                 title={project.title}
                 loading="lazy"
                 sandbox="allow-scripts allow-same-origin"

@@ -27,28 +27,6 @@ export const MY_PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "Seat of Wisdom International",
-    category: "Education Technology · School Management System",
-    description:
-      "Comprehensive school management system designed and developed to digitise and streamline school administrative and academic operations.",
-    subDescription: [
-      "Designed and developed a centralised system to digitise student records, academic tracking, and administration.",
-      "Translated school operational challenges into intuitive software functionality and structured workflows.",
-      "Simplified day-to-day administrative burdens for teachers, administrators, and parents.",
-    ],
-    href: "#",
-    logo: "",
-    image: "",
-    accent: "from-teal-500/25 to-slate-900/20",
-    tags: [
-      { id: 1, name: "TypeScript", path: "/assets/logos/javascript.svg" },
-      { id: 2, name: "React", path: "/assets/logos/react.svg" },
-      { id: 3, name: "SQL", path: "/assets/logos/javascript.svg" },
-      { id: 4, name: "EdTech", path: "/assets/logos/javascript.svg" },
-    ],
-  },
-  {
-    id: 3,
     title: "Inverex Global",
     category: "Renewable Energy · Collaborative Team Project",
     description:
@@ -68,7 +46,7 @@ export const MY_PROJECTS: Project[] = [
     ],
   },
   {
-    id: 4,
+    id: 3,
     title: "Getweys",
     category: "Digital Agency · Collaborative Team Project",
     description:
@@ -88,7 +66,7 @@ export const MY_PROJECTS: Project[] = [
     ],
   },
   {
-    id: 5,
+    id: 4,
     title: "PromptStore",
     category: "AI Marketplace · Collaborative Team Project",
     description:
@@ -108,7 +86,7 @@ export const MY_PROJECTS: Project[] = [
     ],
   },
   {
-    id: 6,
+    id: 5,
     title: "ClipSave",
     category: "Media Tools · Collaborative Team Project",
     description:
