@@ -19,13 +19,13 @@ export const AboutStatCard: FC<Stat & { index: number }> = ({
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={fadeInUp}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      className="glass gradient-border p-6 md:p-7"
+      transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+      className="glass gradient-border p-6 md:p-7 hover:border-emerald-500/30 transition-colors"
     >
-      <p className="text-4xl font-extrabold text-gradient md:text-5xl">
+      <p className="text-3xl font-extrabold text-emerald-400 md:text-4xl tracking-tight">
         {value}
       </p>
-      <p className="mt-2 text-sm text-neutral-400 md:text-base">{label}</p>
+      <p className="mt-2 text-xs md:text-sm text-neutral-400 font-medium leading-snug">{label}</p>
     </motion.div>
   );
 };

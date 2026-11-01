@@ -31,7 +31,7 @@ export const Hero: FC = () => {
       >
         <span>Scroll</span>
         <span className="relative block h-10 w-px overflow-hidden bg-white/10">
-          <span className="scroll-hint-sweep absolute inset-x-0 top-0 h-3 bg-gradient-to-b from-coral to-transparent" />
+          <span className="scroll-hint-sweep absolute inset-x-0 top-0 h-3 bg-gradient-to-b from-emerald-400 to-transparent" />
         </span>
       </a>
     </section>

@@ -18,7 +18,7 @@ export const Services: FC = () => {
   const auroraOpacity = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [0.3, 0.7, 0.3]
+    [0.1, 0.3, 0.1]
   );
 
   return (
@@ -32,8 +32,7 @@ export const Services: FC = () => {
         style={{ y: auroraY, opacity: auroraOpacity }}
         className="pointer-events-none absolute inset-0 -z-10"
       >
-        <div className="absolute right-10 top-10 h-80 w-80 rounded-full bg-lavender/20 blur-[140px]" />
-        <div className="absolute bottom-10 left-10 h-72 w-72 rounded-full bg-aqua/15 blur-[140px]" />
+        <div className="absolute right-10 top-10 h-80 w-80 rounded-full bg-emerald-500/[0.04] blur-[150px]" />
       </motion.div>
 
       <SectionHeader
@@ -41,8 +40,8 @@ export const Services: FC = () => {
         eyebrow={`Services · ${padIndex(SERVICES.length)}`}
         title={
           <>
-            What I can build for you,{" "}
-            <span className="text-gradient">end-to-end.</span>
+            Technical capabilities delivered{" "}
+            <span className="text-emerald-400">end-to-end.</span>
           </>
         }
         hint={["Scroll", "Stack"]}

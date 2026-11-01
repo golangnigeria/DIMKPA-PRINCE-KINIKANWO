@@ -17,7 +17,7 @@ export const MY_PROJECTS: Project[] = [
     href: "https://curexal.space",
     logo: "",
     image: "",
-    accent: "from-mint/40 to-royal/10",
+    accent: "from-emerald-500/25 to-teal-950/20",
     tags: [
       { id: 1, name: "Go", path: "/assets/logos/javascript.svg" },
       { id: 2, name: "PostgreSQL", path: "/assets/logos/javascript.svg" },
@@ -39,7 +39,7 @@ export const MY_PROJECTS: Project[] = [
     href: "#",
     logo: "",
     image: "",
-    accent: "from-aqua/40 to-royal/10",
+    accent: "from-teal-500/25 to-slate-900/20",
     tags: [
       { id: 1, name: "TypeScript", path: "/assets/logos/javascript.svg" },
       { id: 2, name: "React", path: "/assets/logos/react.svg" },
@@ -60,7 +60,7 @@ export const MY_PROJECTS: Project[] = [
     href: "https://www.inverexglobal.com/",
     logo: "",
     image: "/projects/inverex.webp",
-    accent: "from-aqua/40 to-royal/10",
+    accent: "from-emerald-600/20 to-slate-900/20",
     tags: [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
@@ -80,7 +80,7 @@ export const MY_PROJECTS: Project[] = [
     href: "https://getweys.com/",
     logo: "",
     image: "/projects/getweys.webp",
-    accent: "from-royal/40 to-lavender/10",
+    accent: "from-teal-600/20 to-slate-900/20",
     tags: [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
@@ -100,7 +100,7 @@ export const MY_PROJECTS: Project[] = [
     href: "https://promptstore.io/",
     logo: "",
     image: "",
-    accent: "from-fuchsia/40 to-royal/10",
+    accent: "from-emerald-500/20 to-slate-900/20",
     tags: [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
@@ -120,7 +120,7 @@ export const MY_PROJECTS: Project[] = [
     href: "https://clipsaves.com/",
     logo: "",
     image: "",
-    accent: "from-sand/40 to-coral/10",
+    accent: "from-teal-600/20 to-slate-900/20",
     tags: [
       { id: 1, name: "Next.js", path: "/assets/logos/react.svg" },
       { id: 2, name: "Node.js", path: "/assets/logos/javascript.svg" },

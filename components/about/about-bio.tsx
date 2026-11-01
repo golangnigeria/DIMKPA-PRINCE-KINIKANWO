@@ -19,7 +19,7 @@ export const AboutBio: FC = () => {
       transition={{ duration: 0.7 }}
       className="glass gradient-border p-8 md:p-10 lg:col-span-7"
     >
-      <p className="mb-3 text-sm uppercase tracking-[0.25em] text-neutral-400">
+      <p className="mb-3 text-xs md:text-sm uppercase tracking-[0.25em] text-emerald-400 font-semibold">
         Professional Background
       </p>
       <h3 className="mb-4 text-2xl font-bold md:text-3xl">

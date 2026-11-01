@@ -33,7 +33,7 @@ export const NavLink: FC<NavLinkProps> = ({
           <motion.span
             layoutId="active-nav"
             transition={SPRING_SNAPPY}
-            className="absolute -bottom-1 left-0 right-0 mx-auto h-px w-6 bg-gradient-to-r from-coral to-lavender"
+            className="absolute -bottom-1 left-0 right-0 mx-auto h-0.5 w-5 rounded-full bg-emerald-400"
           />
         )}
       </a>

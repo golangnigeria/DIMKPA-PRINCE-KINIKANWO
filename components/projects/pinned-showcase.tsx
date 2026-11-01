@@ -29,8 +29,7 @@ export const PinnedShowcase: FC<ProjectListProps> = ({ onOpen }) => {
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-0 top-1/3 h-72 w-72 rounded-full bg-royal/10 blur-[140px]" />
-          <div className="absolute bottom-1/3 right-0 h-80 w-80 rounded-full bg-coral/10 blur-[140px]" />
+          <div className="absolute left-1/4 top-1/3 h-80 w-80 rounded-full bg-emerald-500/[0.03] blur-[150px]" />
         </div>
 
         <motion.div style={{ x }} className="flex h-full will-change-transform">
@@ -48,7 +47,7 @@ export const PinnedShowcase: FC<ProjectListProps> = ({ onOpen }) => {
 
         <motion.div
           style={{ scaleX: progressScale, transformOrigin: "0% 50%" }}
-          className="pointer-events-none absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-coral via-lavender to-royal"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-[2px] bg-emerald-500"
         />
       </div>
     </div>

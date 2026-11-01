@@ -12,9 +12,9 @@ const SubmitButton: FC = () => {
     <button
       type="submit"
       disabled={pending}
-      className="btn-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
+      className="btn-primary w-full py-3 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
     >
-      <span>{pending ? "Signing in…" : "Sign in"}</span>
+      <span>{pending ? "Authenticating…" : "Sign In"}</span>
     </button>
   );
 };
@@ -24,7 +24,7 @@ export const LoginForm: FC = () => {
   const [state, formAction] = useActionState<LoginState, FormData>(signIn, {});
 
   return (
-    <form action={formAction} className="space-y-5">
+    <form action={formAction} className="space-y-4">
       <input type="hidden" name="next" value={searchParams.get("next") ?? ""} />
 
       <div>
@@ -38,7 +38,7 @@ export const LoginForm: FC = () => {
           autoComplete="username"
           required
           className="field-input field-input-focus"
-          placeholder="you@example.com"
+          placeholder="stackninja.pro@gmail.com"
         />
       </div>
 
@@ -60,7 +60,7 @@ export const LoginForm: FC = () => {
       {state.error && (
         <p
           role="alert"
-          className="rounded-lg border border-coral/30 bg-coral/10 px-3 py-2 text-sm text-coral"
+          className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-400"
         >
           {state.error}
         </p>

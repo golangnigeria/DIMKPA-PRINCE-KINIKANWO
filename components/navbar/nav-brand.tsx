@@ -11,11 +11,11 @@ export const NavBrand: FC = () => (
       event.preventDefault();
       goToAnchor("#home");
     }}
-    className="group flex items-center gap-2 text-base font-semibold tracking-tight text-white"
+    className="group flex items-center gap-2.5 text-base font-semibold tracking-tight text-white"
   >
-    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-royal to-coral text-sm font-black text-white shadow-lg shadow-coral/20 transition-transform group-hover:scale-105">
+    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-sm font-bold text-emerald-400 transition-transform group-hover:scale-105">
       {HERO_NAME.charAt(0)}
     </span>
-    <span className="hidden sm:inline">{HERO_NAME}</span>
+    <span className="hidden sm:inline font-medium">{HERO_NAME}</span>
   </a>
 );

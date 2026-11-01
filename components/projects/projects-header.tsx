@@ -9,7 +9,7 @@ export const ProjectsHeader: FC<{ total: number }> = ({ total }) => (
       title={
         <>
           Projects that{" "}
-          <span className="text-gradient">shipped &amp; scaled.</span>
+          <span className="text-emerald-400">engineered &amp; delivered.</span>
         </>
       }
       hint={["Scroll", "Pinned"]}

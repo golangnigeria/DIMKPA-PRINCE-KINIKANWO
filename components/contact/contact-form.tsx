@@ -29,7 +29,7 @@ export const ContactForm: FC = () => {
 
   const pointerX = useMotionValue(50);
   const pointerY = useMotionValue(50);
-  const glow = useMotionTemplate`radial-gradient(600px circle at ${pointerX}% ${pointerY}%, rgba(234,72,132,0.15), transparent 40%)`;
+  const glow = useMotionTemplate`radial-gradient(600px circle at ${pointerX}% ${pointerY}%, rgba(16,185,129,0.08), transparent 45%)`;
 
   const disabled = isLoading || completion < 1;
 
@@ -54,22 +54,22 @@ export const ContactForm: FC = () => {
 
         <div className="relative mb-7 flex items-end justify-between gap-6">
           <div>
-            <p className="text-eyebrow">Place an order</p>
-            <h3 className="mt-1 text-xl font-bold md:text-2xl">
-              Tell me about your project
+            <p className="text-eyebrow">Direct Inquiry</p>
+            <h3 className="mt-1 text-xl font-bold md:text-2xl text-white">
+              Send a message
             </h3>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
               <motion.span>{completionPercent}</motion.span>%
             </span>
-            <div className="relative h-1.5 w-24 overflow-hidden rounded-full bg-white/5">
+            <div className="relative h-1.5 w-24 overflow-hidden rounded-full bg-white/10">
               <motion.div
                 style={{
                   scaleX: completionSpring,
                   transformOrigin: "0% 50%",
                 }}
-                className="absolute inset-0 bg-gradient-to-r from-coral to-lavender"
+                className="absolute inset-0 bg-emerald-500"
               />
             </div>
           </div>
@@ -103,7 +103,7 @@ export const ContactForm: FC = () => {
 
           <FloatingField
             id="message"
-            label="What are you building?"
+            label="Project or operational challenge description"
             value={formData.message}
             onChange={(value) => update("message", value)}
             required
@@ -113,14 +113,10 @@ export const ContactForm: FC = () => {
           <motion.button
             type="submit"
             disabled={disabled}
-            whileTap={{ scale: 0.98 }}
-            className={`relative w-full overflow-hidden rounded-full px-6 py-4 text-sm font-medium text-white transition-opacity md:text-base ${
-              disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+            whileTap={{ scale: 0.99 }}
+            className={`btn-primary w-full py-3.5 text-sm md:text-base font-semibold ${
+              disabled ? "cursor-not-allowed opacity-50 shadow-none hover:shadow-none hover:translate-y-0" : ""
             }`}
-            style={{
-              background: "linear-gradient(135deg, #5c33cc 0%, #ea4884 100%)",
-              boxShadow: "0 10px 30px -10px rgba(234, 72, 132, 0.55)",
-            }}
           >
             <AnimatePresence mode="wait">
               <motion.span
@@ -133,12 +129,12 @@ export const ContactForm: FC = () => {
               >
                 {isLoading ? (
                   <>
-                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-950/40 border-t-emerald-950" />
                     Sending...
                   </>
                 ) : (
                   <>
-                    Send message
+                    Send Message
                     <span aria-hidden>→</span>
                   </>
                 )}
@@ -147,7 +143,7 @@ export const ContactForm: FC = () => {
           </motion.button>
 
           <p className="text-center text-[11px] text-neutral-500">
-            By sending, you agree to be contacted at the email provided.
+            Messages are securely delivered to stackninja.pro@gmail.com
           </p>
         </form>
       </motion.div>

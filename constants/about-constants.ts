@@ -4,4 +4,4 @@ export const MARQUEE = {
 } as const;
 
 export const SKILL_CHIP_CLASS =
-  "whitespace-nowrap rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm text-neutral-200 transition-colors hover:border-white/30 hover:bg-white/[0.08] md:text-base";
+  "whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm text-neutral-300 transition-colors hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] hover:text-emerald-300 md:text-base font-medium";

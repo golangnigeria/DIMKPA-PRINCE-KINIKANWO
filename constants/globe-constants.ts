@@ -2,15 +2,15 @@ import { Vector3 } from "three";
 import { type GlobeKey, type Orbit, type SectionKey } from "@/types/globe-types";
 
 export const THEME = {
-  deep: "#1f1e39",
-  base: "#6a3fd6",
-  hot: "#ea4884",
-  spark: "#33c2cc",
-  rim: "#33c2cc",
-  core: "#08071a",
+  deep: "#0a1310",
+  base: "#10b981",
+  hot: "#34d399",
+  spark: "#6ee7b7",
+  rim: "#10b981",
+  core: "#040907",
 } as const;
 
-export const ORB_COLORS = ["#ea4884", "#33c2cc", "#ca2f8c", "#57db96"] as const;
+export const ORB_COLORS = ["#10b981", "#34d399", "#059669", "#6ee7b7"] as const;
 
 export const GLOBE = {
   sphereRadius: 1.5,

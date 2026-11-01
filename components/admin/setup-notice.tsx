@@ -3,7 +3,7 @@ import { type FC } from "react";
 export const SetupNotice: FC = () => (
   <div className="space-y-4 text-sm">
     <div className="flex items-center gap-2">
-      <span className="inline-block h-2 w-2 rounded-full bg-sand" />
+      <span className="inline-block h-2 w-2 rounded-full bg-amber-400" />
       <h2 className="font-semibold text-white">
         Backend server not connected
       </h2>

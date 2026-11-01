@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition, type FC } from "react";
 import { deleteSubmissionAction } from "./actions";
 
-export const DeleteButton: FC<{ id: string; name: string }> = ({ id, name }) => {
+export const DeleteButton: FC<{ id: string }> = ({ id }) => {
   const router = useRouter();
   const [armed, setArmed] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,15 +27,15 @@ export const DeleteButton: FC<{ id: string; name: string }> = ({ id, name }) => 
     return (
       <div className="flex items-center gap-3">
         {error && (
-          <span role="alert" className="text-xs text-coral">
+          <span role="alert" className="text-xs text-red-400">
             {error}
           </span>
         )}
         <button
           type="button"
           onClick={() => setArmed(true)}
-          className="text-xs text-neutral-500 transition-colors hover:text-coral"
-          aria-label={`Delete submission from ${name}`}
+          className="text-xs text-neutral-500 transition-colors hover:text-red-400 cursor-pointer"
+          aria-label="Delete submission"
         >
           Delete
         </button>
@@ -50,7 +50,7 @@ export const DeleteButton: FC<{ id: string; name: string }> = ({ id, name }) => 
         type="button"
         onClick={handleDelete}
         disabled={pending}
-        className="rounded-full border border-coral/40 bg-coral/10 px-3 py-1 text-xs text-coral transition-colors hover:bg-coral/20 disabled:opacity-60"
+        className="rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1 text-xs text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-60 cursor-pointer"
       >
         {pending ? "Deleting…" : "Yes, delete"}
       </button>
@@ -58,7 +58,7 @@ export const DeleteButton: FC<{ id: string; name: string }> = ({ id, name }) => 
         type="button"
         onClick={() => setArmed(false)}
         disabled={pending}
-        className="text-xs text-neutral-500 hover:text-neutral-300 disabled:opacity-60"
+        className="text-xs text-neutral-500 hover:text-neutral-300 disabled:opacity-60 cursor-pointer"
       >
         Cancel
       </button>

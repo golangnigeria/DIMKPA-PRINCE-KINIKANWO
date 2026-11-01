@@ -24,17 +24,17 @@ export const Alert: FC<AlertProps> = ({ type, text }) => {
     >
       <div
         className={`p-2 ${
-          isDanger ? "bg-red-800" : "bg-royal"
-        } items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex rounded-md p-5`}
+          isDanger ? "bg-red-950 border border-red-500/40 text-red-200" : "bg-emerald-950 border border-emerald-500/40 text-emerald-100"
+        } items-center leading-none lg:rounded-full flex lg:inline-flex rounded-xl p-4 shadow-xl`}
       >
         <p
           className={`flex rounded-full ${
-            isDanger ? "bg-red-500" : "bg-lavender"
-          } uppercase px-2 py-1 text-xs font-semibold mr-3`}
+            isDanger ? "bg-red-500 text-white" : "bg-emerald-500 text-neutral-950"
+          } uppercase px-2.5 py-1 text-xs font-bold mr-3`}
         >
           {isDanger ? "Failed" : "Success"}
         </p>
-        <p className="mr-2 text-left">{text}</p>
+        <p className="mr-2 text-sm text-left">{text}</p>
       </div>
     </motion.div>
   );

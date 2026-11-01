@@ -1,6 +1,6 @@
 import { type FC } from "react";
 
-const PAGE = "3, 4, 18";
+const PAGE = "8, 12, 16";
 
 export const GlobeScrim: FC = () => (
   <>

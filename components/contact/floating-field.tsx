@@ -40,7 +40,7 @@ export const FloatingField: FC<FloatingFieldProps> = ({
     <div
       className={`relative rounded-xl border transition-colors ${
         focused
-          ? "border-coral/60 bg-white/[0.06]"
+          ? "border-emerald-500/60 bg-white/[0.06]"
           : "border-white/10 bg-white/[0.03]"
       }`}
     >
@@ -79,7 +79,7 @@ export const FloatingField: FC<FloatingFieldProps> = ({
             exit="exit"
             transition={UNDERLINE_TRANSITION}
             style={{ originX: 0 }}
-            className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-coral to-lavender"
+            className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-emerald-500 to-emerald-400"
           />
         )}
       </AnimatePresence>
