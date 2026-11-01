@@ -1,9 +1,28 @@
-1:"$Sreact.fragment"
-2:I[47257,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"ClientPageRoot"]
-3:I[23261,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0on19_q1muy86.js"],"default"]
-6:I[97367,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/0on19_q1muy86.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"zHF1866DJqRBSCgj11IIh"}
-4:{}
-5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
-8:null
+2:"$Sreact.fragment"
+3:"/_next/static/chunks/42onvq6nokjl2.js"
+4:I[39756,["$3"],"default"]
+5:I[37457,["$3"],"default"]
+9:I[47257,["$3"],"ClientPageRoot"]
+a:"/_next/static/chunks/3pmou6rx3a9li.js"
+b:I[23261,["$3","$a"],"default"]
+e:I[97367,["$3"],"OutletBoundary"]
+f:"$Sreact.suspense"
+12:"ViewportBoundary"
+13:I[97367,["$3"],"$12"]
+14:"MetadataBoundary"
+15:I[97367,["$3"],"$14"]
+16:I[27201,["$3"],"IconMark"]
+7:X
+8:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$2","c",{"children":[["$","$L9",null,{"Component":"$b","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@c","$@d"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/3pmou6rx3a9li.js","async":true}]],["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]]}],"p":"$@11","v":null,"s":"$7"}}]]
+1:[["children",{"s":"admin","h":64,"d":{"r":["$","$2","c",{"children":[null,["$","div",null,{"className":"min-h-screen w-full bg-primary","children":["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]}]]}],"p":"$@6","v":null,"s":"$7"},"c":"$Q8"}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[null,["$","$L13",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#080c10","media":"(prefers-color-scheme: dark)"}],["$","meta","3",{"name":"theme-color","content":"#10b981","media":"(prefers-color-scheme: light)"}],["$","meta","4",{"name":"color-scheme","content":"dark"}]]}],["$","$L15",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$f",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Contact submissions · Prince Dimkpa | Prince Dimkpa"}],["$","meta","1",{"name":"description","content":"Private dashboard for contact form submissions. Not part of the public site."}],["$","meta","2",{"name":"application-name","content":"Prince Dimkpa | Software Engineer · IT Support · Business Strategist"}],["$","link","3",{"rel":"author","href":"http://localhost:3000"}],["$","meta","4",{"name":"author","content":"Prince Dimkpa"}],["$","link","5",{"rel":"manifest","href":"/manifest.webmanifest"}],["$","meta","6",{"name":"keywords","content":"Prince Dimkpa,Software Engineer,IT Support Officer,Business Strategist,Go Developer,Golang Nigeria,Everight Diagnostic,Curexal Space,Seat of Wisdom International,Owerri Nigeria,Rivers State University,Microbiology,Digital Health Technology,Diagnostic Laboratory IT,ISO 15189:2022,PostgreSQL,Next.js Developer,Owerri, Nigeria · Remote"}],["$","meta","7",{"name":"creator","content":"Prince Dimkpa"}],["$","meta","8",{"name":"publisher","content":"Prince Dimkpa"}],["$","meta","9",{"name":"robots","content":"noindex, nofollow, nocache"}],["$","meta","10",{"name":"googlebot","content":"noindex, nofollow, noimageindex, max-snippet:-1"}],["$","meta","11",{"name":"category","content":"technology"}],["$","meta","12",{"name":"format-detection","content":"telephone=no, address=no, email=no"}],["$","meta","13",{"property":"og:title","content":"Contact submissions · Prince Dimkpa"}],["$","meta","14",{"property":"og:description","content":"Private dashboard for contact form submissions. Not part of the public site."}],["$","meta","15",{"property":"og:type","content":"website"}],["$","meta","16",{"name":"twitter:card","content":"summary"}],["$","meta","17",{"name":"twitter:title","content":"Contact submissions · Prince Dimkpa"}],["$","meta","18",{"name":"twitter:description","content":"Private dashboard for contact form submissions. Not part of the public site."}],["$","link","19",{"rel":"icon","href":"/favicon.ico?favicon.2jm09ta7wbdy6.ico","sizes":"32x32","type":"image/x-icon"}],["$","link","20",{"rel":"icon","href":"/favicon.ico","sizes":"any"}],["$","link","21",{"rel":"icon","href":"/icon.png","type":"image/png","sizes":"32x32"}],["$","link","22",{"rel":"icon","href":"/icon-192.png","type":"image/png","sizes":"192x192"}],["$","link","23",{"rel":"apple-touch-icon","href":"/apple-icon.png","sizes":"180x180","type":"image/png"}],["$","$L16","24",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@17","v":null,"s":"$7"}},"a":"$@18","u":"$@19","b":"tQcPJp-fDvFrk8iNbzEjJ"}
+c:{}
+d:"$8:0:1:d:r:props:children:0:props:serverProvidedParams:params"
+10:null
+19:true
+7:300
+7:C
+18:0
+6:"$undefined"
+17:"$undefined"
+11:"$undefined"
