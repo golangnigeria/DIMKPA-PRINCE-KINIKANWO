@@ -1,37 +1,42 @@
-import { type Metadata } from "next";
-import { redirect } from "next/navigation";
+"use client";
+
+import { useState, type FC, type FormEvent } from "react";
 import Image from "next/image";
-import { Suspense, type FC } from "react";
+import { useRouter } from "next/navigation";
 import { HERO_NAME } from "@/constants/portfolio-constants";
-import { getAdminState } from "@/lib/admin/auth";
-import { SetupNotice } from "@/components/admin/setup-notice";
-import {
-  ADMIN_LOGIN_DESCRIPTION,
-  ADMIN_LOGIN_TITLE,
-} from "@/constants/seo-constants";
-import { LoginForm } from "./login-form";
 
-export const dynamic = "force-dynamic";
+const AdminLoginPage: FC = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-export const metadata: Metadata = {
-  title: ADMIN_LOGIN_TITLE,
-  description: ADMIN_LOGIN_DESCRIPTION,
-  openGraph: {
-    type: "website",
-    title: `${ADMIN_LOGIN_TITLE} · ${HERO_NAME}`,
-    description: ADMIN_LOGIN_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary",
-    title: `${ADMIN_LOGIN_TITLE} · ${HERO_NAME}`,
-    description: ADMIN_LOGIN_DESCRIPTION,
-  },
-};
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-const AdminLoginPage: FC = async () => {
-  const state = await getAdminState();
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-  if (state.status === "admin") redirect("/admin");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        setError(data.error || "Invalid email or password.");
+        setLoading(false);
+        return;
+      }
+
+      router.push("/admin");
+    } catch {
+      setError("Could not reach authentication server.");
+      setLoading(false);
+    }
+  };
 
   return (
     <main className="flex min-h-screen items-center justify-center px-5 py-16">
@@ -55,17 +60,56 @@ const AdminLoginPage: FC = async () => {
         </div>
 
         <div className="glass gradient-border p-6 md:p-7">
-          {state.status === "not-configured" || state.status === "schema-missing" ? (
-            <SetupNotice />
-          ) : (
-            <Suspense
-              fallback={
-                <div className="h-64 animate-pulse rounded-lg bg-white/5" />
-              }
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="admin-email" className="field-label">
+                Email
+              </label>
+              <input
+                id="admin-email"
+                type="email"
+                autoComplete="username"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="field-input field-input-focus"
+                placeholder="stackninja.pro@gmail.com"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="admin-password" className="field-label">
+                Password
+              </label>
+              <input
+                id="admin-password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="field-input field-input-focus"
+                placeholder="••••••••••••"
+              />
+            </div>
+
+            {error && (
+              <div
+                role="alert"
+                className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-xs text-red-300"
+              >
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full py-3 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <LoginForm />
-            </Suspense>
-          )}
+              <span>{loading ? "Authenticating…" : "Sign In"}</span>
+            </button>
+          </form>
         </div>
 
         <p className="mt-6 text-center text-xs text-neutral-500 font-mono">

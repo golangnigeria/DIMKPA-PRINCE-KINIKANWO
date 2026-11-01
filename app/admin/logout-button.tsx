@@ -1,24 +1,30 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
-import { type FC } from "react";
-import { signOut } from "./login/actions";
+import { useState, type FC } from "react";
+import { useRouter } from "next/navigation";
 
-const Inner: FC = () => {
-  const { pending } = useFormStatus();
+export const LogoutButton: FC = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch {
+      // ignore
+    }
+    router.push("/admin/login");
+  };
+
   return (
     <button
-      type="submit"
-      disabled={pending}
-      className="btn-ghost px-4 py-2 text-xs disabled:opacity-60"
+      type="button"
+      onClick={handleLogout}
+      disabled={loading}
+      className="btn-ghost px-4 py-2 text-xs disabled:opacity-60 cursor-pointer"
     >
-      <span>{pending ? "Signing out…" : "Sign out"}</span>
+      <span>{loading ? "Signing out…" : "Sign out"}</span>
     </button>
   );
 };
-
-export const LogoutButton: FC = () => (
-  <form action={signOut}>
-    <Inner />
-  </form>
-);

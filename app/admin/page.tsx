@@ -1,88 +1,98 @@
-import { type Metadata } from "next";
-import { redirect } from "next/navigation";
-import { AdminPagination } from "@/components/admin/admin-pagination";
+"use client";
+
+import { useEffect, useState, type FC } from "react";
+import { useRouter } from "next/navigation";
 import { AdminPanel } from "@/components/admin/admin-panel";
-import { AdminSearch } from "@/components/admin/admin-search";
-import { NotAdminNotice } from "@/components/admin/not-admin-notice";
-import { SetupNotice } from "@/components/admin/setup-notice";
 import { StatCard } from "@/components/admin/stat-card";
 import { SubmissionCard } from "@/components/admin/submission-card";
 import { formatDate } from "@/helpers/format-helpers";
-import { HERO_NAME } from "@/constants/hero-constants";
-import { getAdminState } from "@/lib/admin/auth";
-import { PAGE_SIZE, getSubmissionStats, listSubmissions } from "@/lib/admin/data";
-import { type AdminPageProps } from "@/types/admin-types";
-import {
-  ADMIN_DESCRIPTION,
-  ADMIN_TITLE,
-} from "@/constants/seo-constants";
+import { type ContactRow, type SubmissionStats } from "@/types/admin-types";
 import { LogoutButton } from "./logout-button";
 
-export const dynamic = "force-dynamic";
+const AdminPage: FC = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [adminEmail, setAdminEmail] = useState("");
+  const [stats, setStats] = useState<SubmissionStats>({
+    total: 0,
+    last7Days: 0,
+    latest: null,
+  });
+  const [submissions, setSubmissions] = useState<ContactRow[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
+  const [search, setSearch] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
-export const metadata: Metadata = {
-  title: ADMIN_TITLE,
-  description: ADMIN_DESCRIPTION,
-  openGraph: {
-    type: "website",
-    title: `${ADMIN_TITLE} · ${HERO_NAME}`,
-    description: ADMIN_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary",
-    title: `${ADMIN_TITLE} · ${HERO_NAME}`,
-    description: ADMIN_DESCRIPTION,
-  },
-};
+  const loadData = async (currentPage = 1, currentSearch = "") => {
+    try {
+      const authRes = await fetch("/api/auth/me");
+      if (!authRes.ok) {
+        router.push("/admin/login");
+        return;
+      }
+      const authData = await authRes.json();
+      if (authData.status !== "admin") {
+        router.push("/admin/login");
+        return;
+      }
+      setAdminEmail(authData.user?.email || "Admin");
 
-const AdminPage = async ({ searchParams }: AdminPageProps) => {
-  const state = await getAdminState();
+      const [statsRes, listRes] = await Promise.all([
+        fetch("/api/admin/stats"),
+        fetch(
+          `/api/admin/submissions?page=${currentPage}&q=${encodeURIComponent(
+            currentSearch
+          )}`
+        ),
+      ]);
 
-  if (state.status === "not-configured") {
-    return (
-      <AdminPanel>
-        <SetupNotice />
-      </AdminPanel>
-    );
-  }
+      if (statsRes.ok) {
+        const s = await statsRes.json();
+        setStats(s);
+      }
 
-  if (state.status === "schema-missing") {
-    return (
-      <AdminPanel>
-        <SetupNotice />
-      </AdminPanel>
-    );
-  }
-
-  if (state.status === "signed-out") redirect("/admin/login");
-
-  if (state.status === "not-admin") {
-    return (
-      <AdminPanel>
-        <NotAdminNotice email={state.email} />
-      </AdminPanel>
-    );
-  }
-
-  const params = await searchParams;
-  const search = params.q ?? "";
-  const page = Number.parseInt(params.page ?? "1", 10);
-
-  const [stats, result] = await Promise.all([
-    getSubmissionStats(),
-    listSubmissions(search, page),
-  ]);
-
-  const buildHref = (targetPage: number) => {
-    const query = new URLSearchParams();
-    if (search) query.set("q", search);
-    if (targetPage > 1) query.set("page", String(targetPage));
-    const qs = query.toString();
-    return qs ? `/admin?${qs}` : "/admin";
+      if (listRes.ok) {
+        const l = await listRes.json();
+        setSubmissions(l.rows || []);
+        setTotalCount(l.total || 0);
+        setPage(l.page || 1);
+        setPageCount(l.pageCount || 1);
+      }
+    } catch {
+      // ignore
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const firstOnPage = (result.page - 1) * PAGE_SIZE + 1;
-  const lastOnPage = Math.min(result.page * PAGE_SIZE, result.total);
+  useEffect(() => {
+    loadData(page, search);
+  }, [page, search]);
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setPage(1);
+    setSearch(searchInput.trim());
+  };
+
+  if (loading) {
+    return (
+      <main className="mx-auto flex min-h-[60vh] w-full max-w-5xl items-center justify-center px-5 py-14">
+        <div className="flex items-center gap-3 text-neutral-400">
+          <span className="relative flex h-3 w-3">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+          </span>
+          <span className="text-sm font-mono">Loading dashboard...</span>
+        </div>
+      </main>
+    );
+  }
+
+  const firstOnPage = totalCount > 0 ? (page - 1) * 10 + 1 : 0;
+  const lastOnPage = Math.min(page * 10, totalCount);
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-10 md:px-8 md:py-14">
@@ -91,7 +101,7 @@ const AdminPage = async ({ searchParams }: AdminPageProps) => {
           <p className="text-eyebrow">Admin</p>
           <h1 className="text-heading mt-1">Contact submissions</h1>
           <p className="mt-1 text-sm text-neutral-400">
-            Signed in as {state.user.email}
+            Signed in as {adminEmail}
           </p>
         </div>
         <LogoutButton />
@@ -106,27 +116,56 @@ const AdminPage = async ({ searchParams }: AdminPageProps) => {
         />
       </section>
 
-      <AdminSearch search={search} />
+      <form onSubmit={handleSearchSubmit} className="mt-8 flex gap-3">
+        <input
+          type="search"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          placeholder="Search by name, email, or message..."
+          className="field-input field-input-focus flex-1"
+        />
+        <button type="submit" className="btn-primary px-6 py-2 text-sm">
+          Search
+        </button>
+      </form>
 
       <p className="mt-6 text-sm text-neutral-500">
-        {result.total === 0
+        {totalCount === 0
           ? search
             ? `No submissions match “${search}”.`
             : "No submissions yet."
-          : `Showing ${firstOnPage} to ${lastOnPage} of ${result.total}`}
+          : `Showing ${firstOnPage} to ${lastOnPage} of ${totalCount}`}
       </p>
 
       <section className="mt-4 space-y-4">
-        {result.rows.map((row) => (
+        {submissions.map((row) => (
           <SubmissionCard key={row.id} row={row} />
         ))}
       </section>
 
-      <AdminPagination
-        page={result.page}
-        pageCount={result.pageCount}
-        buildHref={buildHref}
-      />
+      {pageCount > 1 && (
+        <div className="mt-8 flex justify-center gap-2">
+          <button
+            type="button"
+            disabled={page <= 1}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            className="btn-ghost px-4 py-2 text-xs disabled:opacity-40"
+          >
+            Previous
+          </button>
+          <span className="flex items-center px-3 text-xs text-neutral-400">
+            Page {page} of {pageCount}
+          </span>
+          <button
+            type="button"
+            disabled={page >= pageCount}
+            onClick={() => setPage((p) => Math.min(pageCount, p + 1))}
+            className="btn-ghost px-4 py-2 text-xs disabled:opacity-40"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </main>
   );
 };

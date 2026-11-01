@@ -1,5 +1,14 @@
 import { type ContactSubmission } from "@/lib/admin/data";
 
+export type { ContactSubmission };
+export type ContactRow = ContactSubmission;
+
+export interface SubmissionStats {
+  total: number;
+  last7Days: number;
+  latest: string | null;
+}
+
 export interface AdminPageProps {
   searchParams: Promise<{ q?: string; page?: string }>;
 }

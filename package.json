@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build:ui": "next build",
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/start.mjs",
     "lint": "eslint"
   },
   "dependencies": {

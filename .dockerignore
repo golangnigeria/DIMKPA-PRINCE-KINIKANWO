@@ -1,9 +1,0 @@
-node_modules
-.next
-.git
-.env
-.env.local
-backend/dev.db
-backend/portfolio-backend.exe
-backend/*.exe
-*.log
